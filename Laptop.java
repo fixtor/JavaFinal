@@ -6,25 +6,16 @@ public class Laptop {
 	private String operatingSystem;
 	private int randomAccessMemory;
 	private int hddValue;
-
 	private float price;
 
 
 	public String getVendor() {return vendor;}
-
 	public String getCpuVendor() {return cpuVendor;}
-
 	public String getColor() {return color;}
-
 	public String getOperatingSystem() {return operatingSystem;}
-
 	public int getRandomAccessMemory() {return randomAccessMemory;}
-
 	public int getHddValue() {return hddValue;}
-
 	public float price() {return price;}
-
-
 	public void setPrice(float price) {this.price = price;}
 
 
@@ -38,6 +29,7 @@ public class Laptop {
 		this.price = price;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Laptop{" +
