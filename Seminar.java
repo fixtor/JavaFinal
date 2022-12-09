@@ -1,6 +1,4 @@
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Seminar {
 	public static void main(String[] args) {
@@ -12,14 +10,18 @@ public class Seminar {
 				1000, 36000.0f);
 		Laptop laptop3 = new Laptop("Samsung", "AMD", "Blue", "Windows 10", 32,
 				250, 18000.0f);
+		Laptop laptop4 = new Laptop("Samsung", "Apple", "Green", "Linux", 64, 5000, 54000.0f);
 
 		//Задание 2. Создать множество ноутбуков.
-		Set<Laptop> notebooks = new HashSet<>();
-		notebooks.add(laptop1);
-		notebooks.add(laptop2);
-		notebooks.add(laptop3);
-		for(Laptop item: notebooks)	System.out.println(item.getVendor() + "\t" + item.getHddValue());
+		Set<Laptop> laptops = new HashSet<>();
+		laptops.add(laptop1);
+		laptops.add(laptop2);
+		laptops.add(laptop3);
+		laptops.add(laptop4);
+
+		System.out.println(userChoice(laptops));
 		System.out.println();
+
 
 		//Задание 3. Написать метод, который будет запрашивать у пользователя критерий (или критерии) фильтрации и
 		// выведет ноутбуки, отвечающие фильтру. Критерии фильтрации можно хранить в Map. Например:
@@ -28,6 +30,19 @@ public class Seminar {
 		//2 - Объем ЖД
 		//3 - Операционная система
 		//4 - Цвет …
+	}
+
+	public static Set<Laptop> setLaptops(Laptop laptop) {
+		Set<Laptop> notebooks = new HashSet<>();
+		notebooks.add(laptop);
+		return notebooks;
+	}
+
+	public static Map<String, String> userChoice(Set<Laptop> laptops) {
+		Map<String, String> mapUserChoice = new TreeMap<>();
+		Scanner scanner = new Scanner(System.in);
+		Scanner scanner1 = new Scanner(System.in);
+		String userChoice;
 
 		System.out.println("Введите цифру критерий отбора: \n " +
 				"\t1. Производитель.\n " +
@@ -38,36 +53,78 @@ public class Seminar {
 				"\t6. Размер HDD (ГБ).\n" +
 				"\t0. Exit");
 
-		Scanner scanner = new Scanner(System.in);
 		int userInput = scanner.nextInt();
 		switch (userInput) {
 			case 1: {
-				System.out.println("Производитель");
-				break;
+				System.out.println("Выберете производителя из списка: ");
+				for (Laptop item : laptops) System.out.println(item.getVendor());
+				userChoice = scanner1.nextLine();
+				mapUserChoice.put("Vendor", userChoice);
+				resultChoiceByVendor(mapUserChoice, laptops);
 			}
 			case 2: {
-				System.out.println("Производитель CPU");
-				break;
+				System.out.println("Выберете производителя CPU из списка: ");
+				for (Laptop item : laptops) System.out.println(item.getCpuVendor());
+				System.out.println();
+				userChoice = scanner1.nextLine();
+				mapUserChoice.put("CPU", userChoice);
+				resultChoiceByVendor(mapUserChoice, laptops);//Остановился на добавлении результата поиска
 			}
 			case 3: {
 				System.out.println("Цвет");
-				break;
+				System.out.println("Выберете цвет: ");
+				for (Laptop item : laptops) System.out.println(item.getColor());
+				System.out.println();
+				userChoice = scanner1.nextLine();
+				mapUserChoice.put("Color", userChoice);
 			}
 			case 4: {
-				System.out.println("ОС");
-				break;
+				System.out.println("Выберете операционную систему: ");
+				for (Laptop item : laptops) System.out.println(item.getOperatingSystem());
+				System.out.println();
+				userChoice = scanner1.nextLine();
+				mapUserChoice.put("OS", userChoice);
 			}
 			case 5: {
-				System.out.println("ОЗУ");
-				break;
+				System.out.println("Выберете объем ОЗУ: ");
+				for (Laptop item : laptops) System.out.println(item.getRandomAccessMemory());
+				System.out.println();
+				userChoice = scanner1.nextLine();
+				mapUserChoice.put("RAM", userChoice);
 			}
 			case 6: {
-				System.out.println("HDD");
+				System.out.println("Выберете объем HDD: ");
+				for (Laptop item : laptops) System.out.println(item.getHddValue());
+				System.out.println();
+				userChoice = scanner1.nextLine();
+				mapUserChoice.put("HDD", userChoice);
 				break;
 			}
 			case 0:
 				break;
 		}
+		return mapUserChoice;
+	}
+
+	public static void resultChoiceByVendor(Map<String, String> map, Set<Laptop> laptopSet) {
+		for (Laptop item : laptopSet) {
+			if (map.containsValue(item.getVendor())) {
+				System.out.println(item);
+			}
+		}
+		System.out.println();
+	}
+
+	public static void resultChoiceByCPUVendor(Map<String, String> map, Set<Laptop> laptopSet) {
+		for (Laptop item : laptopSet) {
+			if (map.containsValue(item.getCpuVendor())) {
+				System.out.println(item);
+			}
+		}
+		System.out.println();
 	}
 }
+
+
+
 
