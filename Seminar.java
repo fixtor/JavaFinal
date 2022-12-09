@@ -68,7 +68,7 @@ public class Seminar {
 				System.out.println();
 				userChoice = scanner1.nextLine();
 				mapUserChoice.put("CPU", userChoice);
-				resultChoiceByVendor(mapUserChoice, laptops);//Остановился на добавлении результата поиска
+				resultChoiceByCPUVendor(mapUserChoice, laptops);//Остановился на добавлении результата поиска
 			}
 			case 3: {
 				System.out.println("Цвет");
@@ -77,6 +77,7 @@ public class Seminar {
 				System.out.println();
 				userChoice = scanner1.nextLine();
 				mapUserChoice.put("Color", userChoice);
+				resultColor(mapUserChoice, laptops);
 			}
 			case 4: {
 				System.out.println("Выберете операционную систему: ");
@@ -84,6 +85,7 @@ public class Seminar {
 				System.out.println();
 				userChoice = scanner1.nextLine();
 				mapUserChoice.put("OS", userChoice);
+				resultOS(mapUserChoice, laptops);
 			}
 			case 5: {
 				System.out.println("Выберете объем ОЗУ: ");
@@ -91,6 +93,7 @@ public class Seminar {
 				System.out.println();
 				userChoice = scanner1.nextLine();
 				mapUserChoice.put("RAM", userChoice);
+				resultRAM(mapUserChoice, laptops);
 			}
 			case 6: {
 				System.out.println("Выберете объем HDD: ");
@@ -98,7 +101,7 @@ public class Seminar {
 				System.out.println();
 				userChoice = scanner1.nextLine();
 				mapUserChoice.put("HDD", userChoice);
-				break;
+				resultHDD(mapUserChoice, laptops);
 			}
 			case 0:
 				break;
@@ -123,8 +126,44 @@ public class Seminar {
 		}
 		System.out.println();
 	}
-}
 
+	public static void resultColor(Map<String, String> map, Set<Laptop> laptopSet) {
+		for (Laptop item : laptopSet) {
+			if (map.containsValue(item.getColor())) {
+				System.out.println(item);
+			}
+		}
+		System.out.println();
+	}
+
+	public static void resultOS(Map<String, String> map, Set<Laptop> laptopSet) {
+		for (Laptop item : laptopSet) {
+			if (map.containsValue(item.getOperatingSystem())) {
+				System.out.println(item);
+			}
+		}
+		System.out.println();
+	}
+
+	public static void resultRAM(Map<String, String> map, Set<Laptop> laptopSet) {
+		for (Laptop item : laptopSet) {
+			if (map.containsValue(item.getRandomAccessMemory())) {
+				System.out.println(item);
+			}
+		}
+		System.out.println();
+	}
+
+	public static void resultHDD(Map<String, String> map, Set<Laptop> laptopSet) {
+		for (Laptop item : laptopSet) {
+			if (map.containsValue(item.getHddValue())) {
+				System.out.println(item);
+			}
+		}
+		System.out.println();
+	}
+}
+//Сделать отрицательный результат проверки
 
 
 
