@@ -4,22 +4,22 @@ public class Laptop {
 	private String cpuVendor;
 	private String color;
 	private String operatingSystem;
-	private int randomAccessMemory;
-	private int hddValue;
-	private float price;
+	private String randomAccessMemory;
+	private String hddValue;
+	private String price;
 
 
 	public String getVendor() {return vendor;}
 	public String getCpuVendor() {return cpuVendor;}
 	public String getColor() {return color;}
 	public String getOperatingSystem() {return operatingSystem;}
-	public int getRandomAccessMemory() {return randomAccessMemory;}
-	public int getHddValue() {return hddValue;}
-	public float price() {return price;}
-	public void setPrice(float price) {this.price = price;}
+	public String getRandomAccessMemory() {return randomAccessMemory;}
+	public String getHddValue() {return hddValue;}
+	public String price() {return price;}
+	public void setPrice(String price) {this.price = price;}
 
 
-	public Laptop(String vendor, String cpuVendor, String color, String operatingSystem, int randomAccessMemory, int hddValue, float price) {
+	public Laptop(String vendor, String cpuVendor, String color, String operatingSystem, String randomAccessMemory, String hddValue, String price) {
 		this.vendor = vendor;
 		this.cpuVendor = cpuVendor;
 		this.color = color;
